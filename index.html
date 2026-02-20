@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch A1 – Schnellwiederholung</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --border: #e4e2de;
+    --muted: #a09d98;
+    --text: #1c1b19;
+    --sub: #6b6864;
+    --accent-bg: #f3f2ef;
+    --max-w: 900px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 3rem 1.25rem 6rem;
+  }
+
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+
+  header p {
+    font-size: 0.95rem;
+    color: var(--sub);
+    font-weight: 300;
+  }
+
+  /* SECTIONS */
+  section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--border);
+  }
+
+  th {
+    background: var(--accent-bg);
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--sub);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  td:first-child {
+    color: var(--muted);
+    font-weight: 400;
+    width: 90px;
+  }
+
+  tr:nth-child(even) td { background: #fdfcfb; }
+
+  /* CAPTION */
+  .caption {
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--sub);
+    font-style: italic;
+  }
+
+  /* RULE BLOCK */
+  .rule-block {
+    margin-top: 1.25rem;
+    background: var(--accent-bg);
+    border-left: 2px solid var(--border);
+    padding: 1rem 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.4rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .rule-block span { color: var(--muted); }
+  .rule-block strong { font-weight: 500; }
+
+  /* VERB PAIR GRID */
+  .verb-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .verb-pair table td:first-child { width: 75px; }
+
+  @media (max-width: 560px) {
+    .verb-pair { grid-template-columns: 1fr; }
+  }
+
+  /* WORTSTELLUNG */
+  .examples {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .ex-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .ex-row .label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    min-width: 36px;
+    flex-shrink: 0;
+  }
+
+  .ex-row.wrong {
+    background: #fdf8f8;
+    border-color: #e8d8d6;
+  }
+
+  .ex-row.wrong .label { color: #b89c9a; }
+  .ex-row.wrong .sentence { text-decoration: line-through; color: #a08886; }
+
+  .verb-pos {
+    font-weight: 500;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 1px;
+  }
+
+  .rule-note {
+    display: inline-block;
+    background: var(--accent-bg);
+    padding: 0.55rem 1rem;
+    font-size: 0.88rem;
+    border-left: 2px solid var(--border);
+    margin-bottom: 1rem;
+  }
+
+  /* WORTSCHATZ */
+  .wortschatz-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .wortschatz-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 380px) {
+    .wortschatz-grid { grid-template-columns: 1fr; }
+  }
+
+  .word-col h3 {
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .word-col ul {
+    list-style: none;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="section-label">Sprachkurs</div>
+    <h1>Hauptbasis Deutsch A1<br>Schnellwiederholung</h1>
+    <p>Personalpronomen, Verbkonjugation, Wortstellung und 50 wichtige Wörter</p>
+  </header>
+
+  <!-- 1. PERSONALPRONOMEN -->
+  <section>
+    <div class="section-label">01</div>
+    <h2>Personalpronomen</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>Singular</th>
+          <th>Plural</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1.</td><td>ich</td><td>wir</td></tr>
+        <tr><td>2.</td><td>du</td><td>ihr</td></tr>
+        <tr><td>3.</td><td>er / sie / es</td><td>sie</td></tr>
+        <tr><td>Formal</td><td colspan="2">Sie</td></tr>
+      </tbody>
+    </table>
+    <p class="caption">Merke: "Sie" ist die höfliche Form — immer grossgeschrieben.</p>
+  </section>
+
+  <!-- 2. KONJUGATION machen -->
+  <section>
+    <div class="section-label">02</div>
+    <h2>Verbkonjugation – Präsens: machen</h2>
+    <table>
+      <thead>
+        <tr><th>Pronomen</th><th>Form</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ich</td><td>mache</td></tr>
+        <tr><td>du</td><td>machst</td></tr>
+        <tr><td>er / sie / es</td><td>macht</td></tr>
+        <tr><td>wir</td><td>machen</td></tr>
+        <tr><td>ihr</td><td>macht</td></tr>
+        <tr><td>sie / Sie</td><td>machen</td></tr>
+      </tbody>
+    </table>
+    <div class="rule-block">
+      <div><span>ich</span> → <strong>-e</strong></div>
+      <div><span>du</span> → <strong>-st</strong></div>
+      <div><span>er/sie/es</span> → <strong>-t</strong></div>
+      <div><span>wir</span> → <strong>-en</strong></div>
+      <div><span>ihr</span> → <strong>-t</strong></div>
+      <div><span>sie/Sie</span> → <strong>-en</strong></div>
+    </div>
+  </section>
+
+  <!-- 3. AUSNAHMEN -->
+  <section>
+    <div class="section-label">03</div>
+    <h2>Wichtige Ausnahmen</h2>
+    <div class="verb-pair">
+      <div>
+        <div class="section-label" style="margin-bottom:0.6rem">sein</div>
+        <table>
+          <tbody>
+            <tr><td>ich</td><td>bin</td></tr>
+            <tr><td>du</td><td>bist</td></tr>
+            <tr><td>er/sie/es</td><td>ist</td></tr>
+            <tr><td>wir</td><td>sind</td></tr>
+            <tr><td>ihr</td><td>seid</td></tr>
+            <tr><td>sie/Sie</td><td>sind</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="section-label" style="margin-bottom:0.6rem">haben</div>
+        <table>
+          <tbody>
+            <tr><td>ich</td><td>habe</td></tr>
+            <tr><td>du</td><td>hast</td></tr>
+            <tr><td>er/sie/es</td><td>hat</td></tr>
+            <tr><td>wir</td><td>haben</td></tr>
+            <tr><td>ihr</td><td>habt</td></tr>
+            <tr><td>sie/Sie</td><td>haben</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WORTSTELLUNG -->
+  <section>
+    <div class="section-label">04</div>
+    <h2>Wortstellung</h2>
+    <div class="rule-note">Das Verb steht auf Position 2.</div>
+    <div class="examples">
+      <div class="ex-row">
+        <span class="label">OK</span>
+        <span class="sentence">Ich <span class="verb-pos">lerne</span> Deutsch.</span>
+      </div>
+      <div class="ex-row">
+        <span class="label">OK</span>
+        <span class="sentence">Heute <span class="verb-pos">lerne</span> ich Deutsch.</span>
+      </div>
+      <div class="ex-row wrong">
+        <span class="label">X</span>
+        <span class="sentence">Ich heute lerne Deutsch.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. WORTSCHATZ -->
+  <section>
+    <div class="section-label">05</div>
+    <h2>50 Wörter A1</h2>
+    <div class="wortschatz-grid">
+      <div class="word-col">
+        <h3>Verben (17)</h3>
+        <ul>
+          <li>sein</li>
+          <li>haben</li>
+          <li>machen</li>
+          <li>gehen</li>
+          <li>kommen</li>
+          <li>wohnen</li>
+          <li>arbeiten</li>
+          <li>lernen</li>
+          <li>sprechen</li>
+          <li>kaufen</li>
+          <li>brauchen</li>
+          <li>suchen</li>
+          <li>finden</li>
+          <li>essen</li>
+          <li>trinken</li>
+          <li>schlafen</li>
+          <li>spielen</li>
+        </ul>
+      </div>
+      <div class="word-col">
+        <h3>Nomen (17)</h3>
+        <ul>
+          <li>der Mann</li>
+          <li>die Frau</li>
+          <li>das Kind</li>
+          <li>das Haus</li>
+          <li>die Wohnung</li>
+          <li>die Stadt</li>
+          <li>das Land</li>
+          <li>die Arbeit</li>
+          <li>die Schule</li>
+          <li>der Freund</li>
+          <li>die Familie</li>
+          <li>der Tag</li>
+          <li>die Zeit</li>
+          <li>das Geld</li>
+          <li>das Essen</li>
+          <li>der Kaffee</li>
+          <li>das Wasser</li>
+        </ul>
+      </div>
+      <div class="word-col">
+        <h3>Adjektive (16)</h3>
+        <ul>
+          <li>gut</li>
+          <li>schlecht</li>
+          <li>groß</li>
+          <li>klein</li>
+          <li>alt</li>
+          <li>jung</li>
+          <li>neu</li>
+          <li>schön</li>
+          <li>teuer</li>
+          <li>billig</li>
+          <li>wichtig</li>
+          <li>richtig</li>
+          <li>müde</li>
+          <li>krank</li>
+          <li>schnell</li>
+          <li>langsam</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
