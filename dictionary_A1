@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Немецкий A1 — Словарь</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --ink: #1a1410;
+    --accent: #c84b2f;
+    --accent2: #3b6e52;
+    --muted: #8a7f72;
+    --card: #fff9f0;
+    --border: #d4c9b8;
+    --unknown-bg: #fff3ef;
+    --unknown-border: #c84b2f;
+    --check-on: #c84b2f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    padding: 0 0 100px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 44px 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: 'DE';
+    position: absolute;
+    right: -10px; top: -20px;
+    font-weight: 900;
+    font-size: 180px;
+    opacity: 0.05;
+    color: var(--bg);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  header p {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    opacity: 0.5;
+  }
+
+  /* ── INSTRUCTION ── */
+  .instruction {
+    background: #fffbf5;
+    border-left: 4px solid var(--accent);
+    padding: 16px 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .instruction-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+  .instruction-text { font-size: 0.88rem; font-weight: 600; color: var(--ink); line-height: 1.5; }
+
+  .instruction-text span { color: var(--accent); font-weight: 700; }
+
+  /* ── CONTROLS ── */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 14px 40px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+
+  .controls-left { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; align-items: center; }
+
+  button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1.5px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    padding: 7px 16px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+
+  button:hover { background: var(--ink); color: var(--bg); }
+  button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button.active:hover { opacity: 0.85; }
+
+  .btn-reset { border-color: var(--muted); color: var(--muted); }
+  .btn-reset:hover { background: var(--muted); color: var(--bg); border-color: var(--muted); }
+
+  .btn-filter-toggle { display: flex; align-items: center; gap: 5px; }
+  .btn-filter-toggle .arrow { font-size: 0.6rem; transition: transform 0.25s ease; display: inline-block; }
+  .btn-filter-toggle.open .arrow { transform: rotate(180deg); }
+
+  .btn-analyze {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-left: auto;
+  }
+  .btn-analyze:hover { background: #a83820; border-color: #a83820; color: #fff; }
+  .btn-analyze:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-analyze:disabled:hover { background: var(--accent); border-color: var(--accent); }
+
+  .stats {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .stats span { color: var(--accent); font-weight: 800; }
+
+  /* ── FILTER PANEL ── */
+  .filter-panel {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+    background: var(--bg);
+    border-bottom: 1px solid transparent;
+  }
+
+  .filter-panel.open {
+    max-height: 600px;
+    border-bottom-color: var(--border);
+  }
+
+  .filter-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px 40px 16px;
+  }
+
+  .tab-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    padding: 5px 13px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: all 0.12s;
+  }
+
+  .tab-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .tab-btn.active { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 40px 0;
+  }
+
+  .category { margin-bottom: 48px; }
+
+  .category-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+    flex-wrap: wrap;
+  }
+
+  .category-title-de {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--ink);
+  }
+
+  .category-title-ru {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .category-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .know-all-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    margin-left: auto;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+
+  .know-all-toggle:hover { color: var(--accent2); }
+  .know-all-toggle.all-known { color: var(--accent2); }
+
+  .know-all-box {
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+
+  .know-all-toggle.all-known .know-all-box {
+    background: var(--accent2);
+    border-color: var(--accent2);
+  }
+
+  .know-all-box::after {
+    content: '';
+    width: 7px; height: 4px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translateY(-1px);
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  .know-all-toggle.all-known .know-all-box::after { opacity: 1; }
+
+  .words-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+  }
+
+  .word-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    user-select: none;
+  }
+
+  .word-card:hover { border-color: var(--ink); transform: translateY(-1px); }
+  .word-card.known { border-color: var(--accent2); }
+
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .word-card.known .checkbox { background: var(--accent2); border-color: var(--accent2); }
+
+  .checkbox::after {
+    content: '';
+    width: 8px; height: 5px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translateY(-1px);
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  .word-card.known .checkbox::after { opacity: 1; }
+
+  .word-text { font-size: 0.88rem; font-weight: 600; line-height: 1.3; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--muted);
+  }
+  .empty-state h2 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; color: var(--ink); }
+  .empty-state p { font-size: 0.9rem; font-weight: 500; }
+
+  /* ── MODAL OVERLAY ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,20,16,0.55);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .modal {
+    background: var(--card);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 36px 40px;
+    transform: translateY(20px);
+    transition: transform 0.25s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+
+  .modal-overlay.open .modal { transform: translateY(0); }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+
+  .modal-title { font-size: 1.5rem; font-weight: 900; color: var(--ink); line-height: 1.2; }
+  .modal-subtitle { font-size: 0.82rem; font-weight: 500; color: var(--muted); margin-top: 4px; }
+
+  .btn-close {
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    border-radius: 4px;
+  }
+  .btn-close:hover { background: var(--border); color: var(--ink); }
+
+  /* Score cards row */
+  .score-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .score-card {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    border: 1.5px solid var(--border);
+  }
+
+  .score-card .score-val {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .score-card .score-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .score-card.good .score-val { color: var(--accent2); }
+  .score-card.bad .score-val { color: var(--accent); }
+  .score-card.total .score-val { color: var(--ink); }
+
+  /* Progress bar */
+  .progress-section { margin-bottom: 28px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .progress-bar {
+    height: 12px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), #5aaa7e);
+    border-radius: 20px;
+    transition: width 0.8s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* Level badge */
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .level-badge .badge-icon { font-size: 1.1rem; }
+
+  /* Category breakdown */
+  .section-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .cat-breakdown { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+
+  .cat-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+  }
+
+  .cat-row-name { flex: 0 0 160px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cat-row-bar { flex: 1; height: 8px; background: var(--border); border-radius: 10px; overflow: hidden; }
+  .cat-row-fill { height: 100%; border-radius: 10px; transition: width 0.6s ease; }
+  .cat-row-pct { flex: 0 0 36px; text-align: right; font-weight: 700; font-size: 0.78rem; }
+
+  .fill-hard { background: var(--accent); }
+  .fill-ok { background: #e8a85a; }
+  .fill-easy { background: var(--accent2); }
+
+  .highlight-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    border: 1.5px solid var(--border);
+  }
+
+  .highlight-item .hi-icon { font-size: 1rem; flex-shrink: 0; }
+  .highlight-item.hard { border-color: #f5c4b8; }
+  .highlight-item.easy { border-color: #b8dfc8; }
+
+  /* CTA in modal */
+  .modal-cta {
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    border-radius: 10px;
+    padding: 13px 24px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    width: 100%;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .modal-cta:hover { opacity: 0.85; background: var(--ink); color: var(--bg); }
+
+  /* ── CONFIRM DIALOG ── */
+  .confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,20,16,0.25);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .confirm-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .confirm-bar {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    transform: scale(0.95) translateY(8px);
+    transition: transform 0.2s ease;
+  }
+
+  .confirm-overlay.show .confirm-bar {
+    transform: scale(1) translateY(0);
+  }
+
+  .confirm-bar-text {
+    display: block;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .confirm-bar-sub {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+
+  .confirm-bar-btns {
+    display: flex;
+    gap: 10px;
+  }
+
+  .confirm-yes {
+    flex: 1;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .confirm-yes:hover { opacity: 0.85; background: var(--accent); color: #fff; }
+
+  .confirm-no {
+    flex: 1;
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .confirm-no:hover { background: var(--border); color: var(--ink); }
+    header, .instruction, .controls, .filter-inner, main { padding-left: 16px; padding-right: 16px; }
+    .words-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .score-row { grid-template-columns: 1fr 1fr; }
+    .modal { padding: 24px 20px; }
+    .cat-row-name { flex: 0 0 120px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <h1>Немецкий A1<br>Словарь</h1>
+  <p>~1000 слов для начального уровня</p>
+</header>
+
+<!-- INSTRUCTION -->
+<div class="instruction">
+  <div class="instruction-icon">💡</div>
+  <div class="instruction-text">
+    <span>Как это работает:</span> просматривай слова по категориям и нажимай на те, которые ты <span>знаешь</span>.
+    Когда закончишь — нажми кнопку <span>«Анализировать»</span>, чтобы оценить свой словарный запас.
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="controls-left">
+    <button id="btn-all" class="active" onclick="showAll()">Все слова</button>
+    <button id="btn-unknown" onclick="showUnknown()">Только незнакомые</button>
+    <button class="btn-filter-toggle" id="btn-filter" onclick="toggleFilter()">Категории <span class="arrow">▼</span></button>
+    <button class="btn-reset" onclick="resetAll()">Сбросить</button>
+  </div>
+  <div class="stats">Знаю: <span id="counter">0</span> / <span id="total">0</span></div>
+  <button class="btn-analyze" id="btn-analyze" onclick="analyze()" disabled>🔍 Анализировать</button>
+</div>
+
+<!-- FILTER PANEL -->
+<div class="filter-panel" id="filter-panel">
+  <div class="filter-inner" id="filter-tabs"></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="main-content"></main>
+
+<!-- ANALYTICS MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Анализ словарного запаса</div>
+        <div class="modal-subtitle" id="modal-subtitle"></div>
+      </div>
+      <button class="btn-close" onclick="closeModalDirect()">✕</button>
+    </div>
+
+    <!-- Score cards -->
+    <div class="score-row">
+      <div class="score-card good">
+        <div class="score-val" id="score-known">—</div>
+        <div class="score-label">Знаю</div>
+      </div>
+      <div class="score-card bad">
+        <div class="score-val" id="score-unknown">—</div>
+        <div class="score-label">Не знаю</div>
+      </div>
+      <div class="score-card total">
+        <div class="score-val" id="score-pct">—</div>
+        <div class="score-label">Охват</div>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-section">
+      <div class="progress-label">
+        <span>Знакомые слова</span>
+        <span id="progress-label-pct">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Level badge -->
+    <div class="level-badge" id="level-badge">
+      <span class="badge-icon">🎯</span>
+      <span id="level-text">Определяем уровень...</span>
+    </div>
+
+    <!-- Category breakdown -->
+    <div class="section-title">По категориям (% знакомых слов)</div>
+    <div class="cat-breakdown" id="cat-breakdown"></div>
+
+    <!-- Highlights -->
+    <div class="section-title">Рекомендации</div>
+    <div class="highlight-list" id="highlight-list"></div>
+
+    <button class="modal-cta" onclick="closeModalDirect()">Продолжить учить</button>
+  </div>
+</div>
+
+<!-- CONFIRM OVERLAY -->
+<div class="confirm-overlay" id="confirm-bar" onclick="cancelReset(event)">
+  <div class="confirm-bar">
+    <span class="confirm-bar-text">Сбросить весь выбор?</span>
+    <span class="confirm-bar-sub">Все отмеченные слова будут сняты</span>
+    <div class="confirm-bar-btns">
+      <button class="confirm-no" onclick="cancelReset()">Отмена</button>
+      <button class="confirm-yes" onclick="confirmReset()">Да, сбросить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── VOCABULARY DATA ────────────────────────────────────────────────
+// Category keys: German name · Russian name (for display)
+// catRu map used for Russian tab labels and analytics
+const catRu = {
+  "Pronomen": "Местоимения",
+  "Verben — Grundverben": "Глаголы — основные",
+  "Verben — Alltag": "Глаголы — повседневные",
+  "Substantive — Mensch & Familie": "Существительные — Люди и семья",
+  "Substantive — Wohnen & Haus": "Существительные — Дом и жильё",
+  "Substantive — Essen & Trinken": "Существительные — Еда и напитки",
+  "Substantive — Stadt & Orte": "Существительные — Город и места",
+  "Substantive — Verkehr & Reise": "Существительные — Транспорт и путешествия",
+  "Substantive — Zeit": "Существительные — Время",
+  "Substantive — Körper & Gesundheit": "Существительные — Тело и здоровье",
+  "Substantive — Schule & Arbeit": "Существительные — Учёба и работа",
+  "Substantive — Freizeit & Hobbys": "Существительные — Досуг и хобби",
+  "Substantive — Natur & Wetter": "Существительные — Природа и погода",
+  "Adjektive — Grundeigenschaften": "Прилагательные — основные",
+  "Adjektive — Größe & Form": "Прилагательные — размер и форма",
+  "Adjektive — Alter & Zustand": "Прилагательные — возраст и состояние",
+  "Adjektive — Farben": "Прилагательные — цвета",
+  "Adjektive — Sinne & Gefühle": "Прилагательные — чувства",
+  "Adjektive — Charakter": "Прилагательные — характер",
+  "Adverbien — Zeit": "Наречия — время",
+  "Adverbien — Ort & Richtung": "Наречия — место и направление",
+  "Adverbien — Grad & Art": "Наречия — степень и способ",
+  "Präpositionen": "Предлоги",
+  "Konjunktionen": "Союзы",
+  "Partikeln & Interjektionen": "Частицы и междометия",
+  "Fragewörter": "Вопросительные слова",
+  "Zahlen & Mengen": "Числа и количество"
+};
+
+const vocabulary = {
+  "Pronomen": [
+    "ich","du","er","sie","es","wir","ihr","Sie",
+    "mein","dein","sein","ihr","unser","euer",
+    "dieser","jener","welcher","alle","man",
+    "jemand","niemand","etwas","nichts","sich","einander","selbst"
+  ],
+  "Verben — Grundverben": [
+    "sein","haben","werden","bleiben","scheinen",
+    "können","müssen","wollen","sollen","dürfen","mögen","möchten",
+    "machen","tun","lassen","gehen","kommen","fahren","fliegen","laufen","rennen",
+    "sagen","sprechen","fragen","antworten","erzählen","erklären","reden","rufen",
+    "sehen","schauen","hören","fühlen","riechen","schmecken","berühren",
+    "essen","trinken","kochen","kaufen","bezahlen","verkaufen","bestellen",
+    "arbeiten","lernen","studieren","lesen","schreiben","rechnen","üben",
+    "wohnen","leben","schlafen","aufwachen","aufstehen","liegen","sitzen","stehen"
+  ],
+  "Verben — Alltag": [
+    "heißen","kennen","wissen","vergessen","verstehen","erinnern",
+    "öffnen","schließen","beginnen","anfangen","enden","aufhören",
+    "helfen","brauchen","suchen","finden","verlieren","benutzen","nehmen",
+    "geben","bringen","holen","stellen","legen","setzen","hängen",
+    "warten","klingeln","anrufen","schicken","bekommen","erhalten","senden",
+    "spielen","tanzen","singen","schwimmen","reisen","spazieren",
+    "denken","glauben","meinen","hoffen","wünschen","vorstellen",
+    "lieben","mögen","hassen","lachen","weinen","lächeln",
+    "zeigen","passen","kosten","gehören","treffen","einladen","besuchen",
+    "funktionieren","reparieren","bauen","messen","zählen","wiegen",
+    "aufmachen","zumachen","einschalten","ausschalten","anziehen","ausziehen",
+    "ankommen","abfahren","umsteigen","aussteigen","einsteigen",
+    "waschen","putzen","aufräumen","bügeln","einkaufen"
+  ],
+  "Substantive — Mensch & Familie": [
+    "der Mann","die Frau","das Kind","der Junge","das Mädchen",
+    "der Mensch","die Person","der Erwachsene","das Baby","der Jugendliche",
+    "die Familie","die Mutter","der Vater","die Eltern",
+    "der Bruder","die Schwester","die Geschwister",
+    "der Großvater","die Großmutter","die Großeltern",
+    "der Sohn","die Tochter","der Onkel","die Tante",
+    "der Cousin","die Cousine","der Neffe","die Nichte",
+    "der Freund","die Freundin","der Bekannte","der Nachbar","die Nachbarin",
+    "der Kollege","die Kollegin","der Chef","die Chefin",
+    "der Lehrer","die Lehrerin","der Schüler","die Schülerin",
+    "der Student","die Studentin","der Arzt","die Ärztin",
+    "der Verkäufer","die Verkäuferin","der Fahrer","die Fahrerin"
+  ],
+  "Substantive — Wohnen & Haus": [
+    "das Haus","die Wohnung","das Zimmer","die Küche",
+    "das Badezimmer","das Schlafzimmer","das Wohnzimmer","das Kinderzimmer",
+    "der Balkon","der Garten","der Keller","der Dachboden",
+    "die Tür","das Fenster","die Wand","der Boden","die Decke",
+    "das Dach","die Treppe","der Aufzug","der Eingang","der Flur",
+    "der Tisch","der Stuhl","das Sofa","das Bett","der Schrank",
+    "der Kühlschrank","der Herd","die Waschmaschine","die Lampe","das Regal",
+    "der Spiegel","das Bild","der Teppich","das Kissen",
+    "das Handtuch","die Seife","die Zahnbürste","das Shampoo",
+    "die Adresse","die Etage","die Miete","der Vermieter","der Schlüssel"
+  ],
+  "Substantive — Essen & Trinken": [
+    "das Essen","das Frühstück","das Mittagessen","das Abendessen","der Snack",
+    "das Brot","das Brötchen","der Kuchen","die Torte","der Keks",
+    "das Fleisch","der Fisch","das Hähnchen","die Wurst","der Schinken",
+    "der Käse","das Ei","die Milch","der Joghurt","die Butter","die Sahne",
+    "das Gemüse","das Obst","der Apfel","die Banane","die Orange","die Erdbeere",
+    "die Tomate","die Kartoffel","die Karotte","der Salat","die Zwiebel","der Knoblauch",
+    "der Reis","die Nudeln","die Suppe","das Müsli",
+    "das Wasser","der Saft","der Kaffee","der Tee","das Bier","der Wein","die Limonade",
+    "das Salz","der Pfeffer","der Zucker","das Öl","der Essig","die Marmelade",
+    "die Gabel","das Messer","der Löffel","der Teller","die Tasse","das Glas","die Flasche"
+  ],
+  "Substantive — Stadt & Orte": [
+    "die Stadt","das Dorf","das Land","die Hauptstadt","das Zentrum",
+    "die Straße","der Weg","der Platz","der Park","der Wald","das Feld",
+    "der Berg","das Meer","der Fluss","der See","die Küste","die Insel",
+    "die Brücke","das Gebäude","das Hochhaus",
+    "der Supermarkt","das Geschäft","der Laden","der Markt","das Einkaufszentrum",
+    "das Restaurant","das Café","die Bäckerei","die Metzgerei","die Apotheke",
+    "das Krankenhaus","die Arztpraxis","die Polizei","die Feuerwehr",
+    "das Hotel","die Pension","die Jugendherberge",
+    "die Schule","die Universität","die Bibliothek","das Museum","das Theater",
+    "der Bahnhof","der Flughafen","die Haltestelle","der Parkplatz",
+    "die Bank","das Postamt","das Rathaus","die Kirche"
+  ],
+  "Substantive — Verkehr & Reise": [
+    "das Auto","der Bus","die Bahn","der Zug","die U-Bahn",
+    "die Straßenbahn","das Fahrrad","das Motorrad","das Flugzeug","das Schiff","das Taxi",
+    "die Fahrt","die Reise","der Urlaub","der Ausflug","die Strecke","die Route",
+    "das Ticket","die Fahrkarte","der Fahrplan","der Fahrschein",
+    "die Abfahrt","die Ankunft","der Umstieg","die Verspätung",
+    "das Gepäck","der Koffer","der Rucksack","die Tasche",
+    "der Ausweis","der Pass","das Visum","die Buchung",
+    "der Führerschein","das Benzin","die Tankstelle","der Parkplatz"
+  ],
+  "Substantive — Zeit": [
+    "die Zeit","die Uhr","die Minute","die Sekunde","die Stunde","der Tag",
+    "die Woche","das Wochenende","der Monat","das Jahr","das Jahrhundert",
+    "der Montag","der Dienstag","der Mittwoch","der Donnerstag",
+    "der Freitag","der Samstag","der Sonntag",
+    "der Januar","der Februar","der März","der April","der Mai","der Juni",
+    "der Juli","der August","der September","der Oktober","der November","der Dezember",
+    "der Frühling","der Sommer","der Herbst","der Winter",
+    "der Morgen","der Mittag","der Nachmittag","der Abend","die Nacht",
+    "das Datum","der Feiertag","der Geburtstag","das Jubiläum",
+    "der Anfang","das Ende","die Vergangenheit","die Zukunft","die Gegenwart",
+    "die Pause","der Termin","der Zeitplan"
+  ],
+  "Substantive — Körper & Gesundheit": [
+    "der Körper","der Kopf","das Gesicht","das Haar","die Haut",
+    "das Auge","die Nase","der Mund","das Ohr","die Lippe","die Zunge",
+    "der Hals","die Schulter","der Arm","der Ellbogen","die Hand","der Finger","der Daumen",
+    "der Bauch","die Brust","der Rücken","die Hüfte",
+    "das Bein","das Knie","der Fuß","die Zehe",
+    "das Herz","die Lunge","der Magen","der Zahn",
+    "die Gesundheit","die Krankheit","der Schmerz","das Fieber","die Verletzung",
+    "der Husten","der Schnupfen","die Erkältung","die Allergie",
+    "das Medikament","die Tablette","die Creme","das Pflaster","das Rezept",
+    "der Arzttermin","die Untersuchung","die Krankenkasse"
+  ],
+  "Substantive — Schule & Arbeit": [
+    "die Schule","die Klasse","das Klassenzimmer","die Tafel","der Unterricht",
+    "das Heft","das Buch","der Stift","der Bleistift","der Radiergummi","die Schere",
+    "die Hausaufgabe","die Prüfung","der Test","die Note","das Zeugnis",
+    "die Pause","das Fach","die Sprache","die Mathematik",
+    "die Arbeit","der Beruf","der Job","das Büro","die Fabrik",
+    "der Computer","der Laptop","das Handy","das Tablet","der Drucker",
+    "die E-Mail","der Brief","das Formular","das Dokument",
+    "das Gehalt","das Geld","die Besprechung","der Vertrag","die Bewerbung"
+  ],
+  "Substantive — Freizeit & Hobbys": [
+    "die Freizeit","das Hobby","der Sport","das Spiel","das Treffen",
+    "der Film","das Kino","das Theater","das Konzert","die Ausstellung",
+    "die Musik","das Lied","das Instrument","die Gitarre","das Klavier","die Geige",
+    "das Buch","die Zeitung","die Zeitschrift","das Internet","die App",
+    "das Foto","die Kamera","das Bild","die Kunst",
+    "der Ball","das Tennis","das Schwimmen","das Laufen",
+    "das Schwimmbad","das Fitnessstudio","der Sportverein",
+    "die Party","das Fest","das Geschenk","die Einladung",
+    "die Ferien","die Wanderung","der Campingplatz"
+  ],
+  "Substantive — Natur & Wetter": [
+    "die Natur","das Wetter","das Klima","die Umwelt",
+    "die Sonne","der Mond","der Stern","der Himmel",
+    "der Regen","der Schnee","der Wind","der Sturm","der Nebel","das Eis",
+    "die Wolke","der Blitz","der Donner","der Regenbogen",
+    "die Temperatur","der Grad","die Wärme","die Kälte",
+    "das Tier","der Hund","die Katze","das Pferd","der Vogel","der Fisch",
+    "die Kuh","das Schwein","das Schaf","der Hase","die Maus","der Bär",
+    "der Baum","die Blume","das Gras","der Stein","die Erde","der Sand"
+  ],
+  "Adjektive — Grundeigenschaften": [
+    "gut","schlecht","schön","hässlich","richtig","falsch",
+    "wichtig","interessant","langweilig","lustig","komisch",
+    "traurig","einfach","schwierig","möglich","unmöglich",
+    "nett","freundlich","nötig","natürlich","normal",
+    "sicher","gefährlich","gesund","krank","müde","fit","aktiv",
+    "bekannt","beliebt","berühmt","typisch","besonders"
+  ],
+  "Adjektive — Größe & Form": [
+    "groß","klein","lang","kurz","breit","schmal","eng",
+    "hoch","niedrig","tief","flach","rund","eckig","gerade",
+    "dick","dünn","schwer","leicht","voll","leer",
+    "ganz","halb","einzeln","doppelt",
+    "viel","wenig","mehr","genug","einige","mehrere"
+  ],
+  "Adjektive — Alter & Zustand": [
+    "alt","neu","jung","modern","klassisch","traditionell",
+    "sauber","schmutzig","kaputt","fertig","bereit",
+    "offen","geschlossen","frei","besetzt",
+    "früh","spät","pünktlich","langsam","schnell",
+    "teuer","billig","günstig","kostenlos"
+  ],
+  "Adjektive — Farben": [
+    "rot","blau","grün","gelb","orange","lila","violett","rosa",
+    "weiß","schwarz","grau","braun","beige","gold","silber",
+    "hell","dunkel","bunt","einfarbig","gestreift","kariert"
+  ],
+  "Adjektive — Sinne & Gefühle": [
+    "laut","leise","still","ruhig",
+    "kalt","kühl","warm","heiß",
+    "süß","sauer","bitter","salzig","scharf","mild",
+    "weich","hart","glatt","rau",
+    "glücklich","unglücklich","zufrieden","unzufrieden",
+    "nervös","aufgeregt","ängstlich","mutig",
+    "wütend","froh","stolz","dankbar","überrascht","neugierig"
+  ],
+  "Adjektive — Charakter": [
+    "fleißig","faul","ehrlich","unehrlich","höflich","unhöflich",
+    "geduldig","ungeduldig","klug","dumm","intelligent","kreativ",
+    "stark","schwach","offen","schüchtern",
+    "großzügig","geizig","hilfsbereit","selbstständig"
+  ],
+  "Adverbien — Zeit": [
+    "heute","morgen","gestern","vorgestern","übermorgen",
+    "jetzt","gleich","sofort","bald","dann","danach",
+    "vorher","zuerst","zunächst","schließlich","endlich",
+    "immer","oft","manchmal","selten","nie","meistens","gelegentlich",
+    "schon","bereits","lange","kurz",
+    "täglich","wöchentlich","monatlich","jährlich"
+  ],
+  "Adverbien — Ort & Richtung": [
+    "hier","dort","da","überall","nirgends","irgendwo",
+    "oben","unten","links","rechts","vorne","hinten","mitte",
+    "innen","außen","drinnen","draußen","nebenan","gegenüber",
+    "hin","her","rein","raus","rauf","runter","weg",
+    "weit","nah","geradeaus"
+  ],
+  "Adverbien — Grad & Art": [
+    "sehr","zu","genug","fast","ganz","völlig","total",
+    "kaum","nur","auch","noch","schon","besonders","hauptsächlich",
+    "vielleicht","wahrscheinlich","sicher","bestimmt","sicherlich",
+    "natürlich","leider","zum Glück","hoffentlich",
+    "so","wie","anders","zusammen","allein","gemeinsam",
+    "ungefähr","etwa","genau","wirklich","tatsächlich","überhaupt",
+    "gerne","lieber","am liebsten","zumindest","mindestens"
+  ],
+  "Präpositionen": [
+    "in","an","auf","über","unter","vor","hinter",
+    "neben","zwischen","bei","mit","von","zu","nach",
+    "aus","für","gegen","durch","ohne","um",
+    "ab","bis","seit","während","wegen",
+    "statt","trotz","außer","gegenüber","entlang",
+    "innerhalb","außerhalb","oberhalb","unterhalb"
+  ],
+  "Konjunktionen": [
+    "und","oder","aber","denn","sondern","jedoch","doch",
+    "weil","da","dass","wenn","als","ob","falls","sofern",
+    "damit","obwohl","obgleich","während","bevor","nachdem",
+    "bis","seit","sobald","solange","seitdem",
+    "entweder … oder","weder … noch","sowohl … als auch",
+    "zwar … aber","nicht nur … sondern auch","je … desto"
+  ],
+  "Partikeln & Interjektionen": [
+    "ja","nein","doch","bitte","danke","gern",
+    "hallo","hi","hey","tschüss","auf Wiedersehen","bis bald",
+    "guten Morgen","guten Tag","guten Abend","gute Nacht",
+    "entschuldigung","es tut mir leid","kein Problem",
+    "okay","super","toll","prima","wunderbar","ausgezeichnet",
+    "ach","oh","ach so","na ja","na","hmm","aha",
+    "halt","mal","denn","eigentlich","wohl",
+    "herzlichen Glückwunsch","viel Spaß","viel Erfolg","viel Glück",
+    "wie bitte?","stimmt","klar","natürlich","genau","richtig"
+  ],
+  "Fragewörter": [
+    "wer","wen","wem","wessen",
+    "was","welcher","welche","welches",
+    "wo","wohin","woher","wann",
+    "warum","weshalb","wozu","wieso",
+    "wie","wie viel","wie viele","wie lange","wie oft","wie weit",
+    "womit","wovon","worüber","worum","worauf"
+  ],
+  "Zahlen & Mengen": [
+    "null","eins","zwei","drei","vier","fünf",
+    "sechs","sieben","acht","neun","zehn",
+    "elf","zwölf","dreizehn","vierzehn","fünfzehn",
+    "sechzehn","siebzehn","achtzehn","neunzehn","zwanzig",
+    "dreißig","vierzig","fünfzig","sechzig","siebzig","achtzig","neunzig",
+    "hundert","tausend","eine Million",
+    "erste","zweite","dritte","vierte","fünfte","letzte",
+    "einmal","zweimal","dreimal","mehrmals",
+    "halb","viertel","dreiviertel","ein Drittel",
+    "beide","alle","einige","viele","wenige","mehr","weniger"
+  ]
+};
+
+// ── STATE ──────────────────────────────────────────────────────────
+let knownWords = new Set();
+try { knownWords = new Set(JSON.parse(localStorage.getItem('a1_known') || '[]')); } catch(e){}
+
+let showingUnknown = false;
+let activeCategory = null;
+
+const allWords = Object.values(vocabulary).flat();
+document.getElementById('total').textContent = allWords.length;
+
+function saveState() {
+  try { localStorage.setItem('a1_known', JSON.stringify([...knownWords])); } catch(e){}
+}
+
+function updateCounter() {
+  const n = knownWords.size;
+  document.getElementById('counter').textContent = n;
+  const btn = document.getElementById('btn-analyze');
+  btn.disabled = n === 0;
+}
+
+// ── TABS ───────────────────────────────────────────────────────────
+function buildTabs() {
+  const container = document.getElementById('filter-tabs');
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tab-btn active';
+  allBtn.textContent = 'Все категории';
+  allBtn.onclick = () => { setCategory(null, allBtn); };
+  container.appendChild(allBtn);
+
+  for (const cat of Object.keys(vocabulary)) {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn';
+    btn.textContent = catRu[cat] || cat;
+    btn.onclick = () => { setCategory(cat, btn); toggleFilter(); };
+    container.appendChild(btn);
+  }
+}
+
+function setCategory(cat, btn) {
+  activeCategory = cat;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function toggleFilter() {
+  const panel = document.getElementById('filter-panel');
+  const btn = document.getElementById('btn-filter');
+  const isOpen = panel.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────
+function render() {
+  const main = document.getElementById('main-content');
+  main.innerHTML = '';
+  let hasVisible = false;
+
+  const cats = activeCategory ? [activeCategory] : Object.keys(vocabulary);
+
+  for (const cat of cats) {
+    const words = vocabulary[cat];
+    const visibleWords = showingUnknown ? words.filter(w => !knownWords.has(w)) : words;
+    if (visibleWords.length === 0) continue;
+    hasVisible = true;
+
+    const allKnown = words.every(w => knownWords.has(w));
+    const knownCount = words.filter(w => knownWords.has(w)).length;
+
+    const section = document.createElement('section');
+    section.className = 'category';
+
+    const header = document.createElement('div');
+    header.className = 'category-header';
+    header.innerHTML = `
+      <span class="category-title-de">${cat}</span>
+      <span class="category-title-ru">· ${catRu[cat] || ''}</span>
+      <span class="category-count">· ${knownCount}/${words.length}</span>
+    `;
+
+    const knowAllBtn = document.createElement('div');
+    knowAllBtn.className = 'know-all-toggle' + (allKnown ? ' all-known' : '');
+    knowAllBtn.innerHTML = `Знаю все<div class="know-all-box"></div>`;
+    knowAllBtn.addEventListener('click', () => toggleKnowAll(cat));
+    header.appendChild(knowAllBtn);
+
+    const grid = document.createElement('div');
+    grid.className = 'words-grid';
+
+    section.appendChild(header);
+    section.appendChild(grid);
+    main.appendChild(section);
+
+    for (const word of visibleWords) {
+      const card = document.createElement('div');
+      card.className = 'word-card' + (knownWords.has(word) ? ' known' : '');
+      card.innerHTML = `<div class="checkbox"></div><span class="word-text">${word}</span>`;
+      card.addEventListener('click', () => toggleWord(word, card, cat));
+      grid.appendChild(card);
+    }
+  }
+
+  if (!hasVisible) {
+    main.innerHTML = `<div class="empty-state">
+      <h2>${showingUnknown ? 'Все слова изучены!' : 'Нет слов'}</h2>
+      <p>${showingUnknown ? 'В этой категории нет незнакомых слов.' : ''}</p>
+    </div>`;
+  }
+}
+
+function toggleWord(word, card, cat) {
+  if (knownWords.has(word)) {
+    knownWords.delete(word);
+    card.classList.remove('known');
+  } else {
+    knownWords.add(word);
+    card.classList.add('known');
+  }
+  updateCounter();
+  saveState();
+  // Update category header count + know-all state
+  refreshCategoryHeader(cat);
+  if (showingUnknown && knownWords.has(word)) {
+    card.style.transition = 'opacity 0.2s';
+    card.style.opacity = '0';
+    setTimeout(() => render(), 220);
+  }
+}
+
+function toggleKnowAll(cat) {
+  const words = vocabulary[cat];
+  const allKnown = words.every(w => knownWords.has(w));
+  if (allKnown) {
+    words.forEach(w => knownWords.delete(w));
+  } else {
+    words.forEach(w => knownWords.add(w));
+  }
+  updateCounter();
+  saveState();
+  render();
+}
+
+function refreshCategoryHeader(cat) {
+  // Find the section for this cat and update count + know-all toggle
+  const sections = document.querySelectorAll('.category');
+  for (const section of sections) {
+    const titleEl = section.querySelector('.category-title-de');
+    if (titleEl && titleEl.textContent === cat) {
+      const words = vocabulary[cat];
+      const knownCount = words.filter(w => knownWords.has(w)).length;
+      const allKnown = knownCount === words.length;
+      const countEl = section.querySelector('.category-count');
+      if (countEl) countEl.textContent = `· ${knownCount}/${words.length}`;
+      const toggle = section.querySelector('.know-all-toggle');
+      if (toggle) toggle.classList.toggle('all-known', allKnown);
+      break;
+    }
+  }
+}
+
+// ── SHOW/HIDE ──────────────────────────────────────────────────────
+function showAll() {
+  showingUnknown = false;
+  document.getElementById('btn-all').classList.add('active');
+  document.getElementById('btn-unknown').classList.remove('active');
+  render();
+}
+
+function showUnknown() {
+  showingUnknown = true;
+  document.getElementById('btn-unknown').classList.add('active');
+  document.getElementById('btn-all').classList.remove('active');
+  render();
+}
+
+function resetAll() {
+  document.getElementById('confirm-bar').classList.add('show');
+}
+
+function confirmReset() {
+  knownWords.clear();
+  saveState();
+  updateCounter();
+  render();
+  document.getElementById('confirm-bar').classList.remove('show');
+}
+
+function cancelReset(e) {
+  if (e && e.target !== document.getElementById('confirm-bar')) return;
+  document.getElementById('confirm-bar').classList.remove('show');
+}
+
+// ── ANALYTICS ─────────────────────────────────────────────────────
+function analyze() {
+  const total = allWords.length;
+  const knownCount = knownWords.size;
+  const unknownCount = total - knownCount;
+  const pct = Math.round((knownCount / total) * 100);
+
+  document.getElementById('modal-subtitle').textContent = `Проверено ${total} слов уровня A1`;
+
+  document.getElementById('score-known').textContent = knownCount;
+  document.getElementById('score-unknown').textContent = unknownCount;
+  document.getElementById('score-pct').textContent = pct + '%';
+
+  document.getElementById('progress-label-pct').textContent = pct + '%';
+  setTimeout(() => {
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }, 50);
+
+  const levelEl = document.getElementById('level-text');
+  const badge = document.getElementById('level-badge');
+  if (pct >= 85) {
+    levelEl.textContent = 'Отличный результат! Уровень A1 уверенно освоен';
+    badge.style.background = '#3b6e52';
+  } else if (pct >= 65) {
+    levelEl.textContent = 'Хороший старт! Продолжай — A1 почти в кармане';
+    badge.style.background = '#7a5c2a';
+  } else if (pct >= 40) {
+    levelEl.textContent = 'Есть над чем поработать — сосредоточься на сложных темах';
+    badge.style.background = '#c84b2f';
+  } else {
+    levelEl.textContent = 'Только начало пути — не сдавайся, повторяй каждый день!';
+    badge.style.background = '#1a1410';
+  }
+
+  const catStats = Object.entries(vocabulary).map(([cat, words]) => {
+    const kn = words.filter(w => knownWords.has(w)).length;
+    const pctKn = words.length > 0 ? Math.round((kn / words.length) * 100) : 0;
+    return { cat, kn, total: words.length, pctKn, ruName: catRu[cat] || cat };
+  }).sort((a, b) => b.pctKn - a.pctKn);
+
+  const breakdownEl = document.getElementById('cat-breakdown');
+  breakdownEl.innerHTML = '';
+  catStats.forEach(({ ruName, pctKn }) => {
+    const colorClass = pctKn >= 70 ? 'fill-easy' : pctKn >= 35 ? 'fill-ok' : 'fill-hard';
+    const row = document.createElement('div');
+    row.className = 'cat-row';
+    row.innerHTML = `
+      <span class="cat-row-name" title="${ruName}">${ruName}</span>
+      <div class="cat-row-bar"><div class="cat-row-fill ${colorClass}" style="width:0%"></div></div>
+      <span class="cat-row-pct">${pctKn}%</span>
+    `;
+    breakdownEl.appendChild(row);
+    setTimeout(() => { row.querySelector('.cat-row-fill').style.width = pctKn + '%'; }, 80);
+  });
+
+  // Highlights
+  const hardCats = catStats.filter(c => c.pctKn < 50).slice(-3).reverse();
+  const easyCats = catStats.filter(c => c.pctKn === 100).slice(0, 3);
+
+  const hlEl = document.getElementById('highlight-list');
+  hlEl.innerHTML = '';
+
+  if (easyCats.length > 0) {
+    easyCats.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'highlight-item easy';
+      el.innerHTML = `<span class="hi-icon">🟢</span><span>Отлично знаешь: <strong>${c.ruName}</strong> — все ${c.total} слов!</span>`;
+      hlEl.appendChild(el);
+    });
+  }
+
+  if (hardCats.length > 0) {
+    hardCats.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'highlight-item hard';
+      el.innerHTML = `<span class="hi-icon">📚</span><span>Стоит поучить: <strong>${c.ruName}</strong> — знаешь ${c.kn} из ${c.total} слов</span>`;
+      hlEl.appendChild(el);
+    });
+  }
+
+  if (hlEl.children.length === 0) {
+    hlEl.innerHTML = `<div class="highlight-item"><span class="hi-icon">💪</span><span>Отмечай слова, которые знаешь — получишь персональные рекомендации</span></div>`;
+  }
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('progress-fill').style.width = '0%';
+}
+
+// ── INIT ───────────────────────────────────────────────────────────
+buildTabs();
+updateCounter();
+render();
+</script>
+</body>
+</html>
