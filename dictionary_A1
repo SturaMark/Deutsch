@@ -63,6 +63,36 @@
     opacity: 0.5;
   }
 
+  .page-nav {
+    margin-top: 14px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-nav a {
+    text-decoration: none;
+    color: var(--bg);
+    border: 1.5px solid rgba(245, 240, 232, 0.5);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .page-nav a:hover,
+  .page-nav a:focus-visible,
+  .page-nav a[aria-current="page"] {
+    background: var(--bg);
+    color: var(--ink);
+    border-color: var(--bg);
+  }
+
   /* ── INSTRUCTION ── */
   .instruction {
     background: #fffbf5;
@@ -614,6 +644,10 @@
 <header>
   <h1>Немецкий A1<br>Словарь</h1>
   <p>~1000 слов для начального уровня</p>
+  <nav class="page-nav" aria-label="Навигация">
+    <a href="index.html">Обзор</a>
+    <a href="dictionary_A1" aria-current="page">Словарь</a>
+  </nav>
 </header>
 
 <!-- INSTRUCTION -->
