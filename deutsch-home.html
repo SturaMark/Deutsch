@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch A1 – Kursübersicht</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f4f4f2;
+    --surface: #ffffff;
+    --border: #e4e2de;
+    --muted: #a09d98;
+    --text: #1c1b19;
+    --sub: #6b6864;
+    --accent-bg: #f3f2ef;
+    --green: #2e6b3e;
+    --green-light: #e8f0ea;
+    --max-w: 960px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+
+  .container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  .course-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--sub);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .progress-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .progress-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--muted);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-circle::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 17%; /* ~1/6 done */
+    background: var(--green);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  /* CARD */
+  .card {
+    background: var(--surface);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  }
+
+  .card.locked {
+    opacity: 0.55;
+    cursor: default;
+  }
+
+  .card-illustration {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green-light);
+    flex-shrink: 0;
+  }
+
+  .card-illustration svg {
+    width: 90px;
+    height: 90px;
+  }
+
+  .card-body {
+    padding: 1rem 1.1rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .card-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .card-meta {
+    margin-top: 0.85rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .meta-dot { color: var(--border); }
+
+  .card-progress-bar {
+    margin-top: 0.55rem;
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .card-progress-bar .fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+  }
+
+  .card-status {
+    margin-top: 0.85rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* LOCK ICON */
+  .lock-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.35;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="course-title">
+      Deutsch A1
+      <span class="progress-pill">
+        <span class="progress-circle"></span>
+        17%
+      </span>
+    </div>
+    <h1>Программа курса</h1>
+  </header>
+
+  <div class="grid">
+
+    <!-- CARD 1 — done -->
+    <div class="card">
+      <div class="card-illustration">
+        <!-- Illustration: open book with DE letters -->
+        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="20" width="30" height="40" rx="1" stroke="#2e6b3e" stroke-width="2.2" fill="none"/>
+          <rect x="48" y="20" width="30" height="40" rx="1" stroke="#2e6b3e" stroke-width="2.2" fill="none"/>
+          <line x1="12" y1="30" x2="42" y2="30" stroke="#2e6b3e" stroke-width="1.5"/>
+          <line x1="12" y1="37" x2="42" y2="37" stroke="#2e6b3e" stroke-width="1.5"/>
+          <line x1="12" y1="44" x2="42" y2="44" stroke="#2e6b3e" stroke-width="1.5"/>
+          <line x1="12" y1="51" x2="42" y2="51" stroke="#2e6b3e" stroke-width="1.5"/>
+          <text x="52" y="50" font-family="serif" font-size="18" fill="#2e6b3e" font-weight="bold">A1</text>
+          <line x1="42" y1="20" x2="42" y2="60" stroke="#2e6b3e" stroke-width="2.2"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Урок 1</div>
+        <div class="card-title">Hauptbasis Deutsch A1 – Schnellwiederholung</div>
+        <div class="card-meta">
+          Пройден <span class="meta-dot">·</span> 5 тем <span class="meta-dot">·</span> ≈ 20 мин
+        </div>
+        <div class="card-progress-bar">
+          <div class="fill" style="width: 100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 — locked -->
+    <div class="card locked">
+      <div class="card-illustration">
+        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Alphabet letters scattered -->
+          <text x="14" y="42" font-family="serif" font-size="26" fill="#2e6b3e" opacity="0.7">A</text>
+          <text x="40" y="55" font-family="serif" font-size="22" fill="#2e6b3e">B</text>
+          <text x="58" y="38" font-family="serif" font-size="18" fill="#2e6b3e" opacity="0.5">C</text>
+          <line x1="14" y1="45" x2="38" y2="45" stroke="#2e6b3e" stroke-width="1.5"/>
+          <line x1="42" y1="58" x2="62" y2="58" stroke="#2e6b3e" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Урок 2</div>
+        <div class="card-title">Alphabet und Aussprache</div>
+        <div class="card-status">Скоро</div>
+      </div>
+    </div>
+
+    <!-- CARD 3 — locked -->
+    <div class="card locked">
+      <div class="card-illustration">
+        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Two speech bubbles -->
+          <rect x="10" y="20" width="40" height="26" rx="5" stroke="#2e6b3e" stroke-width="2" fill="none"/>
+          <polygon points="18,46 24,56 30,46" fill="#2e6b3e" opacity="0.3"/>
+          <rect x="38" y="44" width="40" height="24" rx="5" stroke="#2e6b3e" stroke-width="2" fill="none"/>
+          <polygon points="62,44 68,56 74,44" fill="#2e6b3e" opacity="0.3" transform="rotate(180,68,50)"/>
+          <line x1="18" y1="31" x2="42" y2="31" stroke="#2e6b3e" stroke-width="1.5" opacity="0.5"/>
+          <line x1="18" y1="37" x2="36" y2="37" stroke="#2e6b3e" stroke-width="1.5" opacity="0.5"/>
+          <line x1="46" y1="53" x2="70" y2="53" stroke="#2e6b3e" stroke-width="1.5" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Урок 3</div>
+        <div class="card-title">Sich vorstellen – Kennenlernen</div>
+        <div class="card-status">Скоро</div>
+      </div>
+    </div>
+
+    <!-- CARD 4 — locked -->
+    <div class="card locked">
+      <div class="card-illustration">
+        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Simple house -->
+          <polygon points="45,15 75,38 75,70 15,70 15,38" stroke="#2e6b3e" stroke-width="2" fill="none"/>
+          <rect x="35" y="50" width="20" height="20" stroke="#2e6b3e" stroke-width="2" fill="none"/>
+          <line x1="45" y1="50" x2="45" y2="70" stroke="#2e6b3e" stroke-width="1.5"/>
+          <line x1="35" y1="60" x2="55" y2="60" stroke="#2e6b3e" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Урок 4</div>
+        <div class="card-title">Nomen und Artikel – der, die, das</div>
+        <div class="card-status">Скоро</div>
+      </div>
+    </div>
+
+    <!-- CARD 5 — locked -->
+    <div class="card locked">
+      <div class="card-illustration">
+        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Clock / numbers -->
+          <circle cx="45" cy="45" r="28" stroke="#2e6b3e" stroke-width="2" fill="none"/>
+          <line x1="45" y1="25" x2="45" y2="45" stroke="#2e6b3e" stroke-width="2"/>
+          <line x1="45" y1="45" x2="60" y2="52" stroke="#2e6b3e" stroke-width="2"/>
+          <circle cx="45" cy="45" r="2.5" fill="#2e6b3e"/>
+          <text x="42" y="22" font-family="sans-serif" font-size="7" fill="#2e6b3e">12</text>
+          <text x="67" y="48" font-family="sans-serif" font-size="7" fill="#2e6b3e">3</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Урок 5</div>
+        <div class="card-title">Zahlen, Uhrzeit und Datum</div>
+        <div class="card-status">Скоро</div>
+      </div>
+    </div>
+
+    <!-- CARD 6 — locked -->
+    <div class="card locked">
+      <div class="card-illustration">
+        <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Map pin / location -->
+          <circle cx="45" cy="38" r="16" stroke="#2e6b3e" stroke-width="2" fill="none"/>
+          <circle cx="45" cy="38" r="5" fill="#2e6b3e" opacity="0.4"/>
+          <line x1="45" y1="54" x2="45" y2="72" stroke="#2e6b3e" stroke-width="2"/>
+          <line x1="33" y1="72" x2="57" y2="72" stroke="#2e6b3e" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-label">Урок 6</div>
+        <div class="card-title">Orte und Wegbeschreibung</div>
+        <div class="card-status">Скоро</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
