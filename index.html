@@ -56,6 +56,30 @@
     font-weight: 300;
   }
 
+  .page-nav {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  .page-nav a {
+    text-decoration: none;
+    background: var(--accent-bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.42rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .page-nav a:hover,
+  .page-nav a:focus-visible {
+    background: #eceae6;
+  }
+
   /* SECTIONS */
   section {
     margin-bottom: 3rem;
@@ -247,6 +271,10 @@
     <div class="section-label">Sprachkurs</div>
     <h1>Hauptbasis Deutsch A1<br>Schnellwiederholung</h1>
     <p>Personalpronomen, Verbkonjugation, Wortstellung und 50 wichtige Wörter</p>
+    <nav class="page-nav" aria-label="Seiten">
+      <a href="index.html" aria-current="page">Übersicht</a>
+      <a href="dictionary_A1">Wörterbuch</a>
+    </nav>
   </header>
 
   <!-- 1. PERSONALPRONOMEN -->
