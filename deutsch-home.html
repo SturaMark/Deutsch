@@ -113,6 +113,12 @@
     transition: box-shadow 0.15s ease;
   }
 
+  a.card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
   .card:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.07);
   }
@@ -217,7 +223,7 @@
   <div class="grid">
 
     <!-- CARD 1 — done -->
-    <div class="card">
+    <a class="card" href="index.html" aria-label="Открыть урок 1">
       <div class="card-illustration">
         <!-- Illustration: open book with DE letters -->
         <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -241,7 +247,7 @@
           <div class="fill" style="width: 100%"></div>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- CARD 2 — locked -->
     <div class="card locked">
