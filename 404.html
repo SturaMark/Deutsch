@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seite nicht gefunden – Deutsch A1</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+    :root {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --border: #e4e2de;
+      --muted: #a09d98;
+      --text: #1c1b19;
+      --sub: #6b6864;
+      --accent-bg: #f3f2ef;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+    }
+
+    main {
+      width: min(100%, 560px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .code {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      margin: 0 0 0.6rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.9rem, 5vw, 2.6rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--sub);
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+
+    .page-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    a:hover,
+    a:focus-visible {
+      background: #eceae6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="code">404 Fehler</span>
+    <h1>Seite nicht gefunden</h1>
+    <p>Die angeforderte Seite existiert nicht oder wurde verschoben. Kehre zur Deutsch A1 Übersicht zurück und starte von dort erneut.</p>
+    <div class="page-nav">
+      <a href="https://sturamark.github.io/Deutsch/">Zur Startseite</a>
+      <a href="https://sturamark.github.io/Deutsch/dictionary_A1">Zum Wörterbuch</a>
+    </div>
+  </main>
+</body>
+</html>
