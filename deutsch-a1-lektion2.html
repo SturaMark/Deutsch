@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch A1 · Lektion 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f5f4ef;
+    --text: #1a1a1a;
+    --muted: #888;
+    --border: #e0ded7;
+    --th-bg: #eeede7;
+    --white: #ffffff;
+    --red: #c0392b;
+    --blue: #1a3a5c;
+    --green: #1a5c3a;
+    --brown: #8b4513;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* HEADER */
+  .label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 52px;
+  }
+
+  .nav-btn {
+    border: 1.5px solid var(--border);
+    background: none;
+    padding: 7px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .nav-btn.active, .nav-btn:hover {
+    border-color: #aaa;
+    color: var(--text);
+    background: none;
+  }
+
+  /* TABS */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* SECTIONS */
+  .section {
+    border-top: 1px solid var(--border);
+    padding-top: 48px;
+    margin-bottom: 64px;
+  }
+
+  .section-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  th {
+    background: var(--th-bg);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: rgba(0,0,0,0.02); }
+
+  .cell-muted { color: var(--muted); font-size: 13px; }
+  .wort { font-weight: 500; }
+  .ru { color: var(--muted); font-style: italic; font-size: 13px; }
+  .example { font-size: 13px; color: #555; }
+  .ex-key { font-weight: 500; color: var(--text); }
+  .form-strong { font-weight: 500; }
+  .changed { font-weight: 600; color: var(--red); }
+
+  /* RULE BOXES */
+  .rule {
+    border: 1px solid var(--border);
+    background: var(--white);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+
+  .rule-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .formula {
+    font-size: 13px;
+    font-weight: 500;
+    background: var(--text);
+    color: var(--bg);
+    padding: 8px 14px;
+    display: inline-block;
+    margin: 8px 0;
+    font-family: monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .examples-inline {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .ex-tag {
+    background: var(--th-bg);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  .ex-tag strong { font-weight: 500; }
+
+  .note {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* MODAL GRID */
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .modal-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  .modal-head {
+    padding: 9px 14px;
+    background: var(--th-bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-verb { font-weight: 500; font-size: 14px; }
+  .modal-meaning { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  .modal-card table { margin: 0; font-size: 13px; }
+  .modal-card th { font-size: 10px; padding: 7px 12px; }
+  .modal-card td { padding: 7px 12px; }
+
+  /* STEM GRID */
+  .stem-types {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .stem-badge {
+    border: 1.5px solid var(--border);
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .stem-badge.aa { border-color: var(--brown); color: var(--brown); background: #fff8f3; }
+  .stem-badge.ei { border-color: var(--red); color: var(--red); background: #fff5f5; }
+  .stem-badge.eie { border-color: var(--green); color: var(--green); background: #f3fff7; }
+
+  .stem-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .stem-card {
+    border: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  .stem-head {
+    padding: 8px 12px;
+    background: var(--th-bg);
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    display: inline-block; flex-shrink: 0;
+  }
+
+  .dot-aa { background: var(--brown); }
+  .dot-ei { background: var(--red); }
+  .dot-eie { background: var(--green); }
+
+  .stem-card table { margin: 0; font-size: 12px; }
+  .stem-card th { font-size: 10px; padding: 6px 10px; }
+  .stem-card td { padding: 5px 10px; }
+
+  /* VOCAB */
+  .vocab-block { margin-bottom: 0; }
+
+  .vocab-block-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-bottom: 32px;
+  }
+
+  .vocab-item {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .vocab-item:nth-child(5n) { border-right: none; }
+
+  .v-word {
+    font-weight: 500;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .v-trans { font-size: 12px; color: var(--muted); }
+
+  .der .v-word { color: var(--blue); }
+  .die .v-word { color: var(--green); }
+  .das .v-word { color: #b8860b; }
+
+  .art-legend {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+
+  .art-legend span { display: flex; align-items: center; gap: 6px; }
+  .art-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+  @media (max-width: 680px) {
+    .container { padding: 36px 18px 80px; }
+    h1 { font-size: 2.2rem; }
+    .modal-grid { grid-template-columns: repeat(2, 1fr); }
+    .stem-grid { grid-template-columns: repeat(2, 1fr); }
+    .vocab-grid { grid-template-columns: repeat(3, 1fr); }
+    .vocab-item:nth-child(5n) { border-right: 1px solid var(--border); }
+    .vocab-item:nth-child(3n) { border-right: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="label">Sprachkurs</div>
+  <h1>Deutsch A1<br>Lektion 2</h1>
+  <p class="subtitle">W-Fragen, Fragesätze, Modalverben, Stammveränderung und 50 neue Wörter</p>
+
+  <div class="nav-buttons">
+    <button class="nav-btn active" onclick="showTab('grammatik', this)">Grammatik</button>
+    <button class="nav-btn" onclick="showTab('woerter', this)">Wörterbuch</button>
+  </div>
+
+  <!-- ─── TAB GRAMMATIK ─── -->
+  <div id="tab-grammatik" class="tab-content active">
+
+    <!-- 01 W-FRAGEN -->
+    <div class="section">
+      <div class="section-num">01</div>
+      <h2>W-Fragen — Fragewörter</h2>
+      <table>
+        <thead>
+          <tr><th>Fragewort</th><th>Перевод</th><th>Beispiel</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="wort">Wer</span></td>
+            <td><span class="ru">Кто?</span></td>
+            <td class="example"><span class="ex-key">Wer</span> ist das? — Das ist mein Vater.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Was</span></td>
+            <td><span class="ru">Что?</span></td>
+            <td class="example"><span class="ex-key">Was</span> machst du? — Ich lese ein Buch.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Wo</span></td>
+            <td><span class="ru">Где?</span></td>
+            <td class="example"><span class="ex-key">Wo</span> wohnst du? — In Berlin.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Woher</span></td>
+            <td><span class="ru">Откуда?</span></td>
+            <td class="example"><span class="ex-key">Woher</span> kommst du? — Aus Russland.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Wohin</span></td>
+            <td><span class="ru">Куда?</span></td>
+            <td class="example"><span class="ex-key">Wohin</span> gehst du? — In die Schule.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Wie</span></td>
+            <td><span class="ru">Как?</span></td>
+            <td class="example"><span class="ex-key">Wie</span> heißt du? — Ich heiße Anna.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Wie alt</span></td>
+            <td><span class="ru">Сколько лет?</span></td>
+            <td class="example"><span class="ex-key">Wie alt</span> bist du? — Ich bin 25 Jahre alt.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Wie viele</span></td>
+            <td><span class="ru">Сколько? (количество)</span></td>
+            <td class="example"><span class="ex-key">Wie viele</span> Geschwister hast du? — Zwei.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Wann</span></td>
+            <td><span class="ru">Когда?</span></td>
+            <td class="example"><span class="ex-key">Wann</span> kommst du? — Um 8 Uhr.</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Warum</span></td>
+            <td><span class="ru">Почему?</span></td>
+            <td class="example"><span class="ex-key">Warum</span> lernst du Deutsch? — Es macht Spaß!</td>
+          </tr>
+          <tr>
+            <td><span class="wort">Welche/r/s</span></td>
+            <td><span class="ru">Какой? Который?</span></td>
+            <td class="example"><span class="ex-key">Welche</span> Farbe magst du? — Blau.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 02 FRAGESÄTZE -->
+    <div class="section">
+      <div class="section-num">02</div>
+      <h2>Fragesätze — Struktur</h2>
+
+      <div class="rule">
+        <div class="rule-label">W-Frage — глагол на 2-м месте</div>
+        <div class="formula">W-Wort + Verb + Subjekt + …</div>
+        <div class="examples-inline">
+          <div class="ex-tag"><strong>Wo</strong> wohnst du?</div>
+          <div class="ex-tag"><strong>Wie alt</strong> ist dein Bruder?</div>
+          <div class="ex-tag"><strong>Was</strong> isst du zum Frühstück?</div>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="rule-label">Ja/Nein-Frage — глагол на 1-м месте</div>
+        <div class="formula">Verb + Subjekt + …?</div>
+        <p style="font-size:13px;color:var(--muted);margin:8px 0 4px;">Antwort: <strong style="color:var(--text)">Ja</strong> oder <strong style="color:var(--text)">Nein</strong>.</p>
+        <div class="examples-inline">
+          <div class="ex-tag"><strong>Hast</strong> du Geschwister? — Ja, ich habe zwei.</div>
+          <div class="ex-tag"><strong>Wohnst</strong> du in Berlin? — Nein, in Hamburg.</div>
+          <div class="ex-tag"><strong>Sprichst</strong> du Englisch? — Ja, ein bisschen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 MODALVERBEN -->
+    <div class="section">
+      <div class="section-num">03</div>
+      <h2>Modalverben im Präsens</h2>
+
+      <div class="rule" style="margin-bottom:22px;">
+        <div class="rule-label">Struktur</div>
+        <div class="formula">Subjekt + Modalverb + … + Infinitiv (am Ende)</div>
+        <div class="examples-inline">
+          <div class="ex-tag">Ich <strong>kann</strong> Deutsch sprechen.</div>
+          <div class="ex-tag">Er <strong>muss</strong> jetzt gehen.</div>
+          <div class="ex-tag">Wir <strong>wollen</strong> Pizza essen.</div>
+          <div class="ex-tag">Du <strong>darfst</strong> hier nicht rauchen.</div>
+        </div>
+      </div>
+
+      <div class="modal-grid">
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <div class="modal-verb">können</div>
+            <div class="modal-meaning">мочь, уметь</div>
+          </div>
+          <table>
+            <thead><tr><th>Pronomen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-muted">ich</td><td class="form-strong">kann</td></tr>
+              <tr><td class="cell-muted">du</td><td class="form-strong">kannst</td></tr>
+              <tr><td class="cell-muted">er/sie/es</td><td class="form-strong">kann</td></tr>
+              <tr><td class="cell-muted">wir</td><td class="form-strong">können</td></tr>
+              <tr><td class="cell-muted">ihr</td><td class="form-strong">könnt</td></tr>
+              <tr><td class="cell-muted">sie/Sie</td><td class="form-strong">können</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <div class="modal-verb">müssen</div>
+            <div class="modal-meaning">быть должным</div>
+          </div>
+          <table>
+            <thead><tr><th>Pronomen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-muted">ich</td><td class="form-strong">muss</td></tr>
+              <tr><td class="cell-muted">du</td><td class="form-strong">musst</td></tr>
+              <tr><td class="cell-muted">er/sie/es</td><td class="form-strong">muss</td></tr>
+              <tr><td class="cell-muted">wir</td><td class="form-strong">müssen</td></tr>
+              <tr><td class="cell-muted">ihr</td><td class="form-strong">müsst</td></tr>
+              <tr><td class="cell-muted">sie/Sie</td><td class="form-strong">müssen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <div class="modal-verb">wollen</div>
+            <div class="modal-meaning">хотеть</div>
+          </div>
+          <table>
+            <thead><tr><th>Pronomen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-muted">ich</td><td class="form-strong">will</td></tr>
+              <tr><td class="cell-muted">du</td><td class="form-strong">willst</td></tr>
+              <tr><td class="cell-muted">er/sie/es</td><td class="form-strong">will</td></tr>
+              <tr><td class="cell-muted">wir</td><td class="form-strong">wollen</td></tr>
+              <tr><td class="cell-muted">ihr</td><td class="form-strong">wollt</td></tr>
+              <tr><td class="cell-muted">sie/Sie</td><td class="form-strong">wollen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <div class="modal-verb">sollen</div>
+            <div class="modal-meaning">следует, надо</div>
+          </div>
+          <table>
+            <thead><tr><th>Pronomen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-muted">ich</td><td class="form-strong">soll</td></tr>
+              <tr><td class="cell-muted">du</td><td class="form-strong">sollst</td></tr>
+              <tr><td class="cell-muted">er/sie/es</td><td class="form-strong">soll</td></tr>
+              <tr><td class="cell-muted">wir</td><td class="form-strong">sollen</td></tr>
+              <tr><td class="cell-muted">ihr</td><td class="form-strong">sollt</td></tr>
+              <tr><td class="cell-muted">sie/Sie</td><td class="form-strong">sollen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <div class="modal-verb">dürfen</div>
+            <div class="modal-meaning">разрешено</div>
+          </div>
+          <table>
+            <thead><tr><th>Pronomen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-muted">ich</td><td class="form-strong">darf</td></tr>
+              <tr><td class="cell-muted">du</td><td class="form-strong">darfst</td></tr>
+              <tr><td class="cell-muted">er/sie/es</td><td class="form-strong">darf</td></tr>
+              <tr><td class="cell-muted">wir</td><td class="form-strong">dürfen</td></tr>
+              <tr><td class="cell-muted">ihr</td><td class="form-strong">dürft</td></tr>
+              <tr><td class="cell-muted">sie/Sie</td><td class="form-strong">dürfen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="modal-card">
+          <div class="modal-head">
+            <div class="modal-verb">mögen</div>
+            <div class="modal-meaning">нравиться, любить</div>
+          </div>
+          <table>
+            <thead><tr><th>Pronomen</th><th>Form</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-muted">ich</td><td class="form-strong">mag</td></tr>
+              <tr><td class="cell-muted">du</td><td class="form-strong">magst</td></tr>
+              <tr><td class="cell-muted">er/sie/es</td><td class="form-strong">mag</td></tr>
+              <tr><td class="cell-muted">wir</td><td class="form-strong">mögen</td></tr>
+              <tr><td class="cell-muted">ihr</td><td class="form-strong">mögt</td></tr>
+              <tr><td class="cell-muted">sie/Sie</td><td class="form-strong">mögen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <p class="note">Merke: Die ich- und er/sie/es-Formen sind bei Modalverben oft gleich — z.B. ich kann = er kann.</p>
+    </div>
+
+    <!-- 04 STAMMVERÄNDERUNG -->
+    <div class="section">
+      <div class="section-num">04</div>
+      <h2>Verben mit Vokaländerung</h2>
+
+      <div class="stem-grid">
+
+        <div class="stem-card">
+          <div class="stem-head">fahren <span class="dot dot-aa"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>fahre</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">fährst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">fährt</td></tr>
+            <tr><td class="cell-muted">wir</td><td>fahren</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>fahrt</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>fahren</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">schlafen <span class="dot dot-aa"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>schlafe</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">schläfst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">schläft</td></tr>
+            <tr><td class="cell-muted">wir</td><td>schlafen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>schlaft</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>schlafen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">tragen <span class="dot dot-aa"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>trage</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">trägst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">trägt</td></tr>
+            <tr><td class="cell-muted">wir</td><td>tragen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>tragt</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>tragen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">laufen <span class="dot dot-aa"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>laufe</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">läufst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">läuft</td></tr>
+            <tr><td class="cell-muted">wir</td><td>laufen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>lauft</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>laufen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">waschen <span class="dot dot-aa"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>wasche</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">wäschst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">wäscht</td></tr>
+            <tr><td class="cell-muted">wir</td><td>waschen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>wascht</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>waschen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">sprechen <span class="dot dot-ei"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>spreche</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">sprichst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">spricht</td></tr>
+            <tr><td class="cell-muted">wir</td><td>sprechen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>sprecht</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>sprechen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">geben <span class="dot dot-ei"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>gebe</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">gibst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">gibt</td></tr>
+            <tr><td class="cell-muted">wir</td><td>geben</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>gebt</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>geben</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">helfen <span class="dot dot-ei"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>helfe</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">hilfst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">hilft</td></tr>
+            <tr><td class="cell-muted">wir</td><td>helfen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>helft</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>helfen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">treffen <span class="dot dot-ei"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>treffe</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">triffst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">trifft</td></tr>
+            <tr><td class="cell-muted">wir</td><td>treffen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>trefft</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>treffen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">lesen <span class="dot dot-eie"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>lese</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">liest</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">liest</td></tr>
+            <tr><td class="cell-muted">wir</td><td>lesen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>lest</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>lesen</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="stem-card">
+          <div class="stem-head">sehen <span class="dot dot-eie"></span></div>
+          <table><thead><tr><th>Pers.</th><th>Form</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-muted">ich</td><td>sehe</td></tr>
+            <tr><td class="cell-muted">du</td><td class="changed">siehst</td></tr>
+            <tr><td class="cell-muted">er/sie</td><td class="changed">sieht</td></tr>
+            <tr><td class="cell-muted">wir</td><td>sehen</td></tr>
+            <tr><td class="cell-muted">ihr</td><td>seht</td></tr>
+            <tr><td class="cell-muted">sie/Sie</td><td>sehen</td></tr>
+          </tbody></table>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end tab-grammatik -->
+
+  <!-- ─── TAB WÖRTERBUCH ─── -->
+  <div id="tab-woerter" class="tab-content">
+
+    <div class="section">
+      <div class="section-num">05</div>
+      <h2>Wortschatz A1 — Familie &amp; Alltag</h2>
+      <p class="subtitle" style="margin-bottom:32px;">50 neue Wörter · Thema: Familie, Verwandte, Beziehungen</p>
+
+      <!-- Verben -->
+      <div class="vocab-block">
+        <div class="vocab-block-title">Verben</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><span class="v-word">heiraten</span><span class="v-trans">жениться / выйти замуж</span></div>
+          <div class="vocab-item"><span class="v-word">lieben</span><span class="v-trans">любить</span></div>
+          <div class="vocab-item"><span class="v-word">kennen</span><span class="v-trans">знать (кого-то)</span></div>
+          <div class="vocab-item"><span class="v-word">kochen</span><span class="v-trans">готовить еду</span></div>
+          <div class="vocab-item"><span class="v-word">aufräumen</span><span class="v-trans">убирать</span></div>
+          <div class="vocab-item"><span class="v-word">einladen</span><span class="v-trans">приглашать</span></div>
+          <div class="vocab-item"><span class="v-word">besuchen</span><span class="v-trans">навещать</span></div>
+          <div class="vocab-item"><span class="v-word">anrufen</span><span class="v-trans">звонить (по тел.)</span></div>
+          <div class="vocab-item"><span class="v-word">fragen</span><span class="v-trans">спрашивать</span></div>
+          <div class="vocab-item"><span class="v-word">antworten</span><span class="v-trans">отвечать</span></div>
+          <div class="vocab-item"><span class="v-word">zeigen</span><span class="v-trans">показывать</span></div>
+          <div class="vocab-item"><span class="v-word">erklären</span><span class="v-trans">объяснять</span></div>
+          <div class="vocab-item"><span class="v-word">erzählen</span><span class="v-trans">рассказывать</span></div>
+          <div class="vocab-item"><span class="v-word">aufwachen</span><span class="v-trans">просыпаться</span></div>
+          <div class="vocab-item"><span class="v-word">vorstellen</span><span class="v-trans">представлять / знакомить</span></div>
+        </div>
+      </div>
+
+      <!-- Substantive -->
+      <div class="vocab-block" style="margin-top:32px;">
+        <div class="vocab-block-title">Substantive</div>
+        <div class="art-legend" style="margin-top:12px;">
+          <span><span class="art-dot" style="background:var(--blue)"></span><span style="color:var(--blue);font-weight:500">der</span>&nbsp;(м.р.)</span>
+          <span><span class="art-dot" style="background:var(--green)"></span><span style="color:var(--green);font-weight:500">die</span>&nbsp;(ж.р.)</span>
+          <span><span class="art-dot" style="background:#b8860b"></span><span style="color:#b8860b;font-weight:500">das</span>&nbsp;(ср.р.)</span>
+        </div>
+        <div class="vocab-grid">
+          <div class="vocab-item der"><span class="v-word">der Vater</span><span class="v-trans">отец</span></div>
+          <div class="vocab-item die"><span class="v-word">die Mutter</span><span class="v-trans">мать</span></div>
+          <div class="vocab-item der"><span class="v-word">der Bruder</span><span class="v-trans">брат</span></div>
+          <div class="vocab-item die"><span class="v-word">die Schwester</span><span class="v-trans">сестра</span></div>
+          <div class="vocab-item der"><span class="v-word">der Sohn</span><span class="v-trans">сын</span></div>
+          <div class="vocab-item die"><span class="v-word">die Tochter</span><span class="v-trans">дочь</span></div>
+          <div class="vocab-item der"><span class="v-word">der Onkel</span><span class="v-trans">дядя</span></div>
+          <div class="vocab-item die"><span class="v-word">die Tante</span><span class="v-trans">тётя</span></div>
+          <div class="vocab-item der"><span class="v-word">der Cousin</span><span class="v-trans">двоюродный брат</span></div>
+          <div class="vocab-item die"><span class="v-word">die Cousine</span><span class="v-trans">двоюродная сестра</span></div>
+          <div class="vocab-item der"><span class="v-word">der Großvater</span><span class="v-trans">дедушка</span></div>
+          <div class="vocab-item die"><span class="v-word">die Großmutter</span><span class="v-trans">бабушка</span></div>
+          <div class="vocab-item die"><span class="v-word">die Eltern (Pl.)</span><span class="v-trans">родители</span></div>
+          <div class="vocab-item die"><span class="v-word">die Geschwister (Pl.)</span><span class="v-trans">братья и сёстры</span></div>
+          <div class="vocab-item das"><span class="v-word">das Baby</span><span class="v-trans">младенец</span></div>
+          <div class="vocab-item der"><span class="v-word">der Ehemann</span><span class="v-trans">муж</span></div>
+          <div class="vocab-item die"><span class="v-word">die Ehefrau</span><span class="v-trans">жена</span></div>
+          <div class="vocab-item das"><span class="v-word">das Paar</span><span class="v-trans">пара</span></div>
+          <div class="vocab-item die"><span class="v-word">die Geburt</span><span class="v-trans">рождение</span></div>
+          <div class="vocab-item der"><span class="v-word">der Geburtstag</span><span class="v-trans">день рождения</span></div>
+        </div>
+      </div>
+
+      <!-- Adjektive -->
+      <div class="vocab-block" style="margin-top:32px;">
+        <div class="vocab-block-title">Adjektive</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><span class="v-word">verheiratet</span><span class="v-trans">женатый / замужем</span></div>
+          <div class="vocab-item"><span class="v-word">ledig</span><span class="v-trans">холостой / незамужняя</span></div>
+          <div class="vocab-item"><span class="v-word">geschieden</span><span class="v-trans">разведённый/-ая</span></div>
+          <div class="vocab-item"><span class="v-word">verwandt</span><span class="v-trans">родственный</span></div>
+          <div class="vocab-item"><span class="v-word">lieb</span><span class="v-trans">милый, дорогой</span></div>
+          <div class="vocab-item"><span class="v-word">nett</span><span class="v-trans">приятный, любезный</span></div>
+          <div class="vocab-item"><span class="v-word">lustig</span><span class="v-trans">весёлый, смешной</span></div>
+          <div class="vocab-item"><span class="v-word">ruhig</span><span class="v-trans">спокойный</span></div>
+          <div class="vocab-item"><span class="v-word">fleißig</span><span class="v-trans">трудолюбивый</span></div>
+          <div class="vocab-item"><span class="v-word">glücklich</span><span class="v-trans">счастливый</span></div>
+        </div>
+      </div>
+
+      <!-- Adverbien -->
+      <div class="vocab-block" style="margin-top:32px;">
+        <div class="vocab-block-title">Adverbien</div>
+        <div class="vocab-grid">
+          <div class="vocab-item"><span class="v-word">zusammen</span><span class="v-trans">вместе</span></div>
+          <div class="vocab-item"><span class="v-word">allein</span><span class="v-trans">один / одна</span></div>
+          <div class="vocab-item"><span class="v-word">manchmal</span><span class="v-trans">иногда</span></div>
+          <div class="vocab-item"><span class="v-word">oft</span><span class="v-trans">часто</span></div>
+          <div class="vocab-item"><span class="v-word">immer</span><span class="v-trans">всегда</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end tab-woerter -->
+
+</div>
+
+<script>
+  function showTab(tab, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
