@@ -26,7 +26,67 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.65;
-    padding: 3rem 1.25rem 6rem;
+    padding: 3rem 1.25rem 6rem 7.5rem;
+  }
+
+  .side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 84px;
+    height: 100vh;
+    background: #dddddd;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+    z-index: 10;
+  }
+
+  .side-nav-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1c1b19;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .side-nav-btn:hover,
+  .side-nav-btn:focus-visible {
+    background: #f1f1f1;
+    border-color: #c8c8c8;
+    outline: none;
+  }
+
+  .side-nav-btn svg {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 900px) {
+    body { padding-left: 1.25rem; }
+    .side-nav {
+      position: static;
+      width: 100%;
+      height: auto;
+      flex-direction: row;
+      justify-content: center;
+      padding: 0.75rem 0;
+      margin-bottom: 1.25rem;
+      border-right: none;
+    }
   }
 
   .container {
@@ -265,6 +325,27 @@
 </style>
 </head>
 <body>
+<nav class="side-nav" aria-label="Sidebar navigation">
+  <a class="side-nav-btn" href="deutsch-home.html" aria-label="Home">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 10.5L12 4l8 6.5"></path>
+      <path d="M6.5 9.5V19a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V9.5"></path>
+    </svg>
+  </a>
+  <a class="side-nav-btn" href="dictionary_A1.html" aria-label="Dictionary">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="4" width="12" height="16" rx="1.5"></rect>
+      <line x1="9" y1="8" x2="15" y2="8"></line>
+      <line x1="8" y1="20" x2="16" y2="20"></line>
+    </svg>
+  </a>
+  <a class="side-nav-btn" href="#" aria-label="Profile">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="11" cy="11" r="6"></circle>
+      <line x1="16" y1="16" x2="21" y2="21"></line>
+    </svg>
+  </a>
+</nav>
 <div class="container">
 
   <header>
@@ -272,7 +353,7 @@
     <h1>Hauptbasis Deutsch A1<br>Schnellwiederholung</h1>
     <p>Personalpronomen, Verbkonjugation, Wortstellung und 50 wichtige Wörter</p>
     <nav class="page-nav" aria-label="Seiten">
-      <a href="index.html" aria-current="page">Übersicht</a>
+      <a href="deutsch-home.html">Übersicht</a>
       <a href="dictionary_A1.html">Wörterbuch</a>
     </nav>
   </header>
